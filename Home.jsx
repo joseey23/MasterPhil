@@ -10,15 +10,17 @@ import axios from "axios";
 export default function Home() {
     const [posts, setPosts] = useState([]);
     const getPostUrl = `http://localhost:5000/api/posts/`
+    const { search } = useLocation();
+
 
     useEffect(() => {
 
         const fetchPosts = async () => {
-            const res = await axios.get(getPostUrl);
+            const res = await axios.get(getPostUrl + search);
             setPosts(res.data);
         };
         fetchPosts();
-    }, []);
+    }, [search]);
 
     return (
         <>
