@@ -13,8 +13,10 @@ export default function Login() {
 
     const userRef = useRef();
     const passwordRef = useRef();
-    const { user, dispatch, isFetching } = useContext(Context);
+    const { dispatch, isFetching } = useContext(Context);
     //const getPostUrl = `http://localhost:5000/auth/login/`
+
+
 
 
     const handleSubmit = async (e) => {
@@ -29,10 +31,10 @@ export default function Login() {
 
         } catch (err) {
             dispatch({ type: "LOGIN_FAILURE" });
-
+            //console.error(err);
         }
     };
-    console.log(user);
+    //console.log(user);
     return (
         <div className="login">
             <span className="loginTitle">Login</span>
@@ -47,7 +49,7 @@ export default function Login() {
                     ref={passwordRef}
 
                 />
-                <button className="loginButton" type="submit">Login </button>
+                <button className="loginButton" type="submit" disabled={isFetching}>Login </button>
             </form>
             <button className="loginRegisterButton">
                 <Link className="link" to="/register">Register</Link>
